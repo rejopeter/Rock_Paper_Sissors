@@ -24,13 +24,16 @@ function playRound(humanSelection, computerSelection) {
   console.log("Humam = " + humanSelection);
   console.log("Computer = " + computerSelection);
   if (humanSelection === computerSelection) {
-    console.log("The match is a tie.")
+    console.log("The match is a tie.");
+    alert("You win the game!");
   } else if ((humanSelection === "ROCK") && (computerSelection === "SISSORS") || (humanSelection === "PAPER") && (computerSelection === "ROCK") || (humanSelection === "SISSORS") && (computerSelection === "PAPER")) {
     humanScore++;
-    console.log("You win this Round")
+    console.log("You win this Round");
+    alert("You win the game!");
   } else {
     computerScore++
-    console.log("Computer wins this Round")
+    console.log("Computer wins this Round");
+    alert("Computer wins the game!");
   }
 }
 rounds = 5;
@@ -39,8 +42,6 @@ function playGamelayRound(rounds) {
     const humanSelection = getHumanChoice();
     const computerSelection = getComputerChoice();
     playRound(humanSelection, computerSelection);
-    alert(`Round ${i + 1}: ${result}`);
-    alert(`Score - You: ${humanScore} | Computer: ${computerScore}`);
   }
 }
 playGamelayRound(rounds);
@@ -50,7 +51,7 @@ if (humanScore > computerScore) {
   console.log("You Win!");
   alert("You win the game!");
 } else if (humanScore < computerScore){
-  console.log("You lose!")
+  console.log("You lose!");
   alert("Computer wins the game!");
 } else {
   console.log("It's a Tie!");
