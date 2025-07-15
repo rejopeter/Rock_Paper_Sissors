@@ -39,6 +39,8 @@ function playGamelayRound(rounds) {
     const humanSelection = getHumanChoice();
     const computerSelection = getComputerChoice();
     playRound(humanSelection, computerSelection);
+    alert(`Round ${i + 1}: ${result}`);
+    alert(`Score - You: ${humanScore} | Computer: ${computerScore}`);
   }
 }
 playGamelayRound(rounds);
@@ -46,8 +48,11 @@ console.log("Human Score = " + humanScore);
 console.log("Computer Score = " + computerScore);
 if (humanScore > computerScore) {
   console.log("You Win!");
+  alert("You win the game!");
 } else if (humanScore < computerScore){
   console.log("You lose!")
+  alert("Computer wins the game!");
 } else {
-  console.log("It's a Tie!")
+  console.log("It's a Tie!");
+  alert("It's a tie!");
 }
