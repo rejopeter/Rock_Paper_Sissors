@@ -1,36 +1,53 @@
-let getComputerChoice;
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
+function getComputerChoice() {
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+  let choice = getRandomInt(3);
+  if (choice == 0) {
+      return "ROCK";
+  } else if (choice == 1) {
+      return "PAPER";
+  } else {
+      return "SISSORS";
+  }
 }
-let choice = getRandomInt(3)
-if (choice == 0) {
-    getComputerChoice = "ROCK"
-} else if (choice == 1) {
-    getComputerChoice = "PAPER"
-} else {
-    getComputerChoice = "SISSORS"
+function getHumanChoice() {
+  return String(prompt("Rock, Paper, or Sissors?")).toUpperCase();
 }
-console.log(getComputerChoice)
-let getHumanChoice
-let Choice = prompt("Rock Paper Sissors");
-switch(Choice) {
-  case "ROCK":
-    getHumanChoice = "ROCK";
-    break;
-  case "PAPER":
-    getHumanChoice = "PAPER";
-  default:
-    getHumanChoice = "SISSORS";
-}
-let humanScore;
-let computerScore;
-humanScore = 0;
-computerScore = 0;
-function playRound(humanChoice, computerChoice) {
-  // your code here!
-}
-
 const humanSelection = getHumanChoice();
 const computerSelection = getComputerChoice();
-
-playRound(humanSelection, computerSelection);
+console.log(getHumanChoice);
+console.log(getComputerChoice);
+let humanScore = 0;
+let computerScore = 0;
+function playRound(humanSelection, computerSelection) {
+  console.log("Humam = " + humanSelection);
+  console.log("Computer = " + computerSelection);
+  if (humanSelection === computerSelection) {
+    console.log("The match is a tie.")
+  } else if ((humanSelection === "ROCK") && (computerSelection === "SISSORS") || (humanSelection === "PAPER") && (computerSelection === "ROCK") || (humanSelection === "SISSORS") && (computerSelection === "PAPER")) {
+    humanScore++;
+    console.log("You win this Round")
+  } else {
+    computerScore++
+    console.log("Computer wins this Round")
+  }
+}
+rounds = 5;
+function playGamelayRound(rounds) {
+  for (let i = 0; i < rounds; i++){
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice();
+    playRound(humanSelection, computerSelection);
+  }
+}
+playGamelayRound(rounds);
+console.log("Human Score = " + humanScore);
+console.log("Computer Score = " + computerScore);
+if (humanScore > computerScore) {
+  console.log("You Win!");
+} else if (humanScore < computerScore){
+  console.log("You lose!")
+} else {
+  console.log("It's a Tie!")
+}
