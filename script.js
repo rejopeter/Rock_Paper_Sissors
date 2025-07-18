@@ -1,3 +1,16 @@
+let submit = document.getElementById('submit');
+submit.addEventListener('click', () => {
+  const rounds = Number(document.getElementById('input').value);
+  playGamelayRound(rounds)
+});
+function getHumanChoice() {
+  return new Promise((resolve) => {
+    const handler = (choice) => () => resolve(choice);
+    document.getElementById("rock").addEventListener("click", handler("ROCK"), { once: true });
+    document.getElementById("paper").addEventListener("click", handler("PAPER"), { once: true });
+    document.getElementById("sissors").addEventListener("click", handler("SISSORS"), { once: true });
+  });
+}
 function getComputerChoice() {
   function getRandomInt(max) {
     return Math.floor(Math.random() * max);
@@ -11,13 +24,8 @@ function getComputerChoice() {
       return "SISSORS";
   }
 }
-function getHumanChoice() {
-  return String(prompt("Rock, Paper, or Sissors?")).toUpperCase();
-}
 const humanSelection = getHumanChoice();
 const computerSelection = getComputerChoice();
-console.log(getHumanChoice);
-console.log(getComputerChoice);
 let humanScore = 0;
 let computerScore = 0;
 function playRound(humanSelection, computerSelection) {
@@ -25,37 +33,42 @@ function playRound(humanSelection, computerSelection) {
   console.log("Computer = " + computerSelection);
   if (humanSelection === computerSelection) {
     console.log("The match is a tie.");
-    alert("The match is a tie.");
+    document.getElementById("result").innerHTML = "The match is a tie.";
   } else if ((humanSelection === "ROCK") && (computerSelection === "SISSORS") || (humanSelection === "PAPER") && (computerSelection === "ROCK") || (humanSelection === "SISSORS") && (computerSelection === "PAPER")) {
     humanScore++;
     console.log("You win this Round");
-    alert("You win the game!");
+    document.getElementById("result").innerHTML = "You win this Round!!!";
   } else {
     computerScore++
     console.log("Computer wins this Round");
-    alert("Computer wins the game!");
+    document.getElementById("result").innerHTML = "Computer wins this Round!";
   }
+  document.getElementById("humanScore").innerHTML = + String(humanScore);
+  document.getElementById("computerScore").innerHTML = + String(computerScore);
 }
-rounds = 5;
-function playGamelayRound(rounds) {
+async function playGamelayRound(rounds) {
   for (let i = 0; i < rounds; i++){
-    const humanSelection = getHumanChoice();
+    document.getElementById("rounds").innerHTML = i+1;
+    document.getElementById("rock").disabled = false;
+    document.getElementById("paper").disabled = false;
+    document.getElementById("sissors").disabled = false;
+    const humanSelection = await getHumanChoice();
+    document.getElementById("rock").disabled = true;
+    document.getElementById("paper").disabled = true;
+    document.getElementById("sissors").disabled = true;
     const computerSelection = getComputerChoice();
     playRound(humanSelection, computerSelection);
   }
-  alert("Human Score = " + humanScore);
-  alert("Computer Score = " + computerScore)
   console.log("Human Score = " + humanScore);
   console.log("Computer Score = " + computerScore);
   if (humanScore > computerScore) {
     console.log("You Win!");
-    alert("You win the game!");
+    document.getElementById("win").innerHTML = "You win!";
   } else if (humanScore < computerScore){
     console.log("You lose!");
-    alert("Computer wins the game!");
+    document.getElementById("win").innerHTML = "Computer wins the game!";
   } else {
     console.log("It's a Tie!");
-    alert("It's a tie!");
+    document.getElementById("win").innerHTML = "The match is a tie.";
   }
 }
-playGamelayRound(rounds);

@@ -5,9 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My First Game</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
     <h1>Rock, Paper, or Sissors!</h1>
+    <h2>How many rounds you want to Play?</h2>
+    <div id="ui">
+        <input type="number" id="input">
+        <button id="submit">Submit</button>
+        <ul class="btnContainer">
+            <li><button id="rock">Rock</button></li>
+            <li><button id="paper">Paper</button></li>
+            <li><button id="sissors">Sissors</button></li>
+        </ul>
+        <div id="scoreBoard">
+            <div id="round">
+                <h1 id="rounds">
+
+                </h1>
+            </div>
+            <div id="result">
+                
+            </div>
+            <div id="score">
+                <h3>Computer Score - </h3><h3 id="computerScore"></h3>
+                <h3>Human Score - </h3><h3 id="humanScore"></h3>
+            </div>
+        </div>
+        <div id="win">
+            
+        </div>
+    </div>
 </body>
 </html>

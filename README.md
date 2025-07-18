@@ -68,3 +68,6 @@ Human Score         = 1
 Computer Score      = 2
 You lose!
 ----------------------------
+
+
+Now, lets transform UI
